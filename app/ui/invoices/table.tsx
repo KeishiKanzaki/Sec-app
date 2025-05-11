@@ -3,6 +3,7 @@ import { UpdateInvoice, DeleteInvoice } from '@/app/ui/invoices/buttons';
 import InvoiceStatus from '@/app/ui/invoices/status';
 import { formatDateToLocal, formatCurrency } from '@/app/lib/utils';
 import { fetchFilteredInvoices } from '@/app/lib/data';
+import type { InvoicesTable } from '@/app/lib/definitions';
 
 export default async function InvoicesTable({
   query,
@@ -11,7 +12,7 @@ export default async function InvoicesTable({
   query: string;
   currentPage: number;
 }) {
-  const invoices = await fetchFilteredInvoices(query, currentPage);
+  const invoices: InvoicesTable[] = await fetchFilteredInvoices(query, currentPage);
 
   return (
     <div className="mt-6 flow-root">
@@ -26,7 +27,7 @@ export default async function InvoicesTable({
                 <div className="flex items-center justify-between border-b pb-4">
                   <div>
                     <div className="mb-2 flex items-center">
-                      <img
+                      <Image
                         src={invoice.image_url}
                         className="mr-2 rounded-full"
                         width={28}
