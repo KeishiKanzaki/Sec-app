@@ -116,14 +116,13 @@ export async function authenticate(
 )  {
     try{
       await signIn('credentials', formData);
-       } catch(error){
+    } catch(error){
         if (error instanceof AuthError){
-            //ここでerror.messageを見る ※auth.jsバージョンアップによるtypeエラー発生
             if (error.message.includes('CredentialSignin')) {
-                    return 'Invalid credentials.'
+                return 'Invalid credentials.'
             }
             return 'Something wrong.';
         }
         throw error;
-        }
     }
+}
